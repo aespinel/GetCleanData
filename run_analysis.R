@@ -1,13 +1,14 @@
 setwd("C:/Users/Alvaro/datascience/Clean/Project/")
 #Read training data add two cols id 
-training = read.csv("UCI HAR Dataset/train/X_train.txt", sep="", header=FALSE)
-training[,562] = read.csv("UCI HAR Dataset/train/Y_train.txt", sep="", header=FALSE)
-training[,563] = read.csv("UCI HAR Dataset/train/subject_train.txt", sep="", header=FALSE)
+train = read.csv("UCI HAR Dataset/train/X_train.txt", sep="", header=FALSE)
+#Add two columns 
+train[,562] = read.csv("UCI HAR Dataset/train/y_train.txt", sep="", header=FALSE)
+train[,563] = read.csv("UCI HAR Dataset/train/subject_train.txt", sep="", header=FALSE)
 
 #read test data add two cols id
-testing = read.csv("UCI HAR Dataset/test/X_test.txt", sep="", header=FALSE)
-testing[,562] = read.csv("UCI HAR Dataset/test/Y_test.txt", sep="", header=FALSE)
-testing[,563] = read.csv("UCI HAR Dataset/test/subject_test.txt", sep="", header=FALSE)
+test = read.csv("UCI HAR Dataset/test/X_test.txt", sep="", header=FALSE)
+test[,562] = read.csv("UCI HAR Dataset/test/y_test.txt", sep="", header=FALSE)
+test[,563] = read.csv("UCI HAR Dataset/test/subject_test.txt", sep="", header=FALSE)
 
 activityLabels = read.csv("UCI HAR Dataset/activity_labels.txt", sep="", header=FALSE)
 
@@ -18,7 +19,7 @@ features[,2] = gsub('-std', 'Std', features[,2])
 features[,2] = gsub('[-()]', '', features[,2])
 
 # Merge training & test datasets 
-allData = rbind(training, testing)
+allData = rbind(train, test)
 
 # Get only the data on mean and std. dev.
 colsWeWant <- grep(".*Mean.*|.*Std.*", features[,2])
